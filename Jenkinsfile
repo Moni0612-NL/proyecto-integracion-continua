@@ -14,13 +14,14 @@ pipeline {
                 bat 'docker --version'
             }
         }
-
-        stage('Levantar Contenedores') {
+        
+        stage('Recrear Contenedores') {
             steps {
+                bat 'docker compose down'
                 bat 'docker compose up -d'
             }
         }
-
+        
         stage('Verificar Contenedores') {
             steps {
                 bat 'docker compose ps'
